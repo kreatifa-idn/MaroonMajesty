@@ -399,8 +399,7 @@
             height: 100%;
             max-height: 100vh;
             max-height: 100dvh;
-            aspect-ratio: 9 / 16;
-            object-fit: contain; 
+            object-fit: fill; /* Diubah ke fill agar elemen pas penuh tanpa menyisakan background di kiri/kanan */
             opacity: 0; 
             z-index: 5; 
             display: block;
@@ -737,9 +736,8 @@
         .p6-asset-top {
             position: relative;
             z-index: 6;                 
-            object-fit: contain;
+            object-fit: fill;
             width: 100%;               
-            max-width: 380px; 
             height: auto;               
             margin-bottom: -5px;
         }
@@ -749,14 +747,12 @@
             z-index: 6;                 
             display: inline-block;
             width: 100%;
-            max-width: 380px;
         }
 
         .p6-maps-link img {
             display: block;
-            object-fit: contain;
+            object-fit: fill;
             width: 100%;               
-            max-width: 380px;
             height: auto;     
             margin-bottom: 20px;
         }
