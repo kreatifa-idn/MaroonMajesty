@@ -1,0 +1,1715 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>The Wedding of Hazela & Kayden</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Montserrat:wght@300;500;600;700&display=swap" rel="stylesheet">
+    
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="The Wedding of Hazela & Kayden">
+    <meta property="og:description" content="Kreatifa.idn Undangan Digital">
+    <meta property="og:url" content="https://alamatundangananda.com">
+    <meta property="og:image" content="https://alamatundangananda.com/foto1.jpg"> 
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    <style>
+        /* --- 0. LOCAL FONT REGISTRATION --- */
+        @font-face {
+            font-family: 'GreatVibesCustom';
+            src: url('GreatVibes.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        @font-face {
+            font-family: 'Authenia';
+            src: url('Authenia.ttf') format('truetype');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        /* --- CONFIG SETTINGAN CUSTOM POSISI, UKURAN, FONT & WARNA --- */
+        :root {
+            /* Cover Background Settings */
+            --cover-bg-image: url('cover.png');
+
+            /* Roll Background Settings (Halaman 1 sampai 7) */
+            --long-roll-bg: url('bgroll.png');
+
+            /* --- PENGATURAN TERPISAH PER ELEMEN COVER (POSISI & UKURAN) --- */
+            
+            /* 1. Cover Element 2 (covernama.png) */
+            --cover-elem2-width: 100%;
+            --cover-elem2-max-width: 300px;
+            --cover-elem2-pos-y: -25px;      /* Atur Naik (+) / Turun (-) pos-y ini */
+            --cover-elem2-pos-x: 0px;      /* Geser Kiri / Kanan */
+
+            /* 2. Cover Open Button (open.png) */
+            --cover-btn-width: 75%;
+            --cover-btn-max-width: 190px;
+            --cover-btn-pos-y: -55px;        /* Atur Naik (+) / Turun (-) pos-y ini */
+            --cover-btn-pos-x: 0px;        /* Geser Kiri / Kanan */
+            --cover-btn-margin-top: 35px;
+
+            /* 3. Cover Guest Greeting & Name Settings */
+            --cover-greeting-pos-y: -20px;   /* Atur Naik (+) / Turun (-) pos-y ini */
+            --cover-greeting-pos-x: 0px;   /* Geser Kiri / Kanan */
+            --cover-greeting-margin-top: 20px;
+
+            --cover-title-font: 'Montserrat', sans-serif;
+            --cover-title-size: 0.75rem;
+            --cover-title-color: #f9f7ee;
+            --cover-title-weight: 500;
+            --cover-title-letter-spacing: 1.5px;
+            --cover-title-margin-bottom: 5px;
+            --cover-title-transform: none;
+
+            --cover-name-font: 'Authenia', cursive;
+            --cover-name-size: 1.8rem;
+            --cover-name-color: #f9f7ee;
+            --cover-name-weight: 700;
+            --cover-name-margin-bottom: 0px;
+            --cover-name-transform: none;
+
+            /* Amplop Rekening Settings (Disesuaikan: Balok Cream, Tulis Maroon) */
+            --bank-card-width: 100%;
+            --bank-card-padding: 24px 20px;
+            --bank-card-bg: #f9f7ee;
+            --bank-card-border: 1.5px solid #f9f7ee;
+            --bank-name-font: 'Montserrat', sans-serif;
+            --bank-name-size: 0.85rem;
+            --bank-name-color: #560105;
+            
+            --acc-box-bg: #560105;
+            --acc-box-color: #f9f7ee;
+            --acc-box-font: 'Montserrat', sans-serif;
+            --acc-box-size: 0.9rem;
+            --acc-box-padding: 14px 16px;
+            --acc-owner-font: 'Montserrat', sans-serif;
+            --acc-owner-size: 0.75rem;
+            --acc-owner-color: #560105;
+        }
+
+        /* --- Reset & Base Styles --- */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body, html {
+            width: 100%;
+            height: 100%;
+            background-color: #1a1a1a;
+            font-family: 'Montserrat', sans-serif;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .app-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            max-width: 480px;
+            background-color: #560105;
+            overflow: hidden;
+            box-shadow: 0 0 30px rgba(0,0,0,0.3);
+        }
+
+        /* --- 1. Main Cover --- */
+        #main-cover {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: var(--cover-bg-image);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; /* Center secara vertikal */
+            align-items: center;     /* Center secara horizontal */
+            text-align: center; 
+            padding-top: 5%;
+            padding-bottom: 20px;
+            padding-left: 15px;
+            padding-right: 15px;
+            z-index: 50;
+            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 1.2s ease;
+            overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Kelas untuk mentrigger animasi buka cover ke bawah */
+        #main-cover.slide-down {
+            transform: translateY(100%);
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .cover-elements-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .cover-elem-2 {
+            position: relative;
+            /* Menggunakan translate untuk mendukung pergeseran X dan Y secara bersamaan dengan smooth */
+            transform: translate(var(--cover-elem2-pos-x), var(--cover-elem2-pos-y)) scale(0.5);
+            width: var(--cover-elem2-width);
+            max-width: var(--cover-elem2-max-width);
+            height: auto;
+            object-fit: contain;
+            opacity: 0;
+            z-index: 2;
+            transition: opacity 1.6s ease-out, transform 1.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        @keyframes munculElegan {
+            0% {
+                opacity: 0;
+                transform: translate(var(--cover-elem2-pos-x), calc(var(--cover-elem2-pos-y) + 20px)) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translate(var(--cover-elem2-pos-x), var(--cover-elem2-pos-y)) scale(1);
+            }
+        }
+
+        .cover-elem-2.show {
+            opacity: 1;
+            animation: munculElegan 1.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+        }
+
+        .guest-greeting-wrapper {
+            margin-top: var(--cover-greeting-margin-top);
+            transform: translate(var(--cover-greeting-pos-x), var(--cover-greeting-pos-y));
+            z-index: 3;
+            opacity: 0;
+            transition: opacity 1.8s ease, transform 1.8s ease;
+            text-align: center;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .guest-greeting-wrapper.show {
+            opacity: 1;
+        }
+
+        .guest-title {
+            font-family: var(--cover-title-font);
+            font-size: var(--cover-title-size);
+            color: var(--cover-title-color);
+            font-weight: var(--cover-title-weight);
+            letter-spacing: var(--cover-title-letter-spacing);
+            margin-bottom: var(--cover-title-margin-bottom);
+            transform: var(--cover-title-transform);
+            text-transform: uppercase;
+            display: block;
+        }
+
+        .guest-name {
+            font-family: var(--cover-name-font);
+            font-size: var(--cover-name-size);
+            color: var(--cover-name-color);
+            font-weight: var(--cover-name-weight);
+            margin-bottom: var(--cover-name-margin-bottom);
+            transform: var(--cover-name-transform);
+            word-break: break-word;
+            display: block;
+        }
+
+        .btn-open-img-wrapper {
+            margin-top: var(--cover-btn-margin-top);
+            transform: translate(var(--cover-btn-pos-x), var(--cover-btn-pos-y));
+            z-index: 3;
+            cursor: pointer;
+            width: var(--cover-btn-width);
+            max-width: var(--cover-btn-max-width);
+            transition: transform 0.2s ease, opacity 1.8s ease;
+            opacity: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-open-img-wrapper.show {
+            opacity: 1;
+        }
+
+        .btn-open-img-wrapper:active {
+            transform: translate(var(--cover-btn-pos-x), var(--cover-btn-pos-y)) scale(0.95);
+        }
+
+        .btn-open-png {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            margin: 0 auto;
+        }
+
+        /* --- 2. Invitation Content Area (Scroll Mengalir) --- */
+        #invitation-content {
+            display: none; 
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            overflow-x: hidden;
+            background-color: #560105;
+            -webkit-overflow-scrolling: touch; 
+            scroll-snap-type: none !important;
+        }
+
+        /* --- LONG ROLL BACKGROUND CONTAINER UNTUK HALAMAN 1 - 7 --- */
+        #content-roll-wrapper {
+            position: relative;
+            width: 100%;
+            background-image: var(--long-roll-bg);
+            background-size: 100% 100%;
+            background-repeat: repeat-y;
+            background-position: top center;
+        }
+
+        /* --- SIDE CONTROLS CONTAINER --- */
+        .side-controls {
+            position: absolute;
+            right: 12px; 
+            bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            z-index: 99;
+            pointer-events: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .side-controls.show {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .side-controls .ctrl-btn {
+            width: 24px; 
+            height: 24px; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            border: none;
+            outline: none;
+            pointer-events: auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+            transition: transform 0.2s ease, opacity 0.5s ease;
+            opacity: 0.65;
+        }
+
+        .side-controls.show .ctrl-btn:hover {
+            opacity: 1;
+        }
+
+        .side-controls .ctrl-btn:active {
+            transform: scale(0.85);
+        }
+
+        .btn-nav-arrow {
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.85);
+            padding: 5px;
+        }
+
+        .btn-music-ctrl {
+            border-radius: 50%;
+            background-color: #f9f7ee;
+            padding: 3px;
+            color: #560105;
+        }
+
+        .btn-music-ctrl svg {
+            width: 100%;
+            height: 100%;
+            fill: currentColor;
+        }
+
+        @keyframes rotateMusic {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        .music-rotating {
+            animation: rotateMusic 4s linear infinite;
+        }
+
+        /* --- SWIPE INDICATOR HALAMAN 1 --- */
+        .swipe-indicator {
+            position: absolute;
+            bottom: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            z-index: 20;
+            pointer-events: none;
+            opacity: 0.8;
+            transition: opacity 0.5s ease;
+            animation: swipeBlink 1.8s ease-in-out infinite;
+        }
+
+        .swipe-indicator.hide {
+            opacity: 0 !important;
+        }
+
+        .swipe-text {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #f9f7ee;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .swipe-icon {
+            width: 12px;
+            height: 12px;
+            fill: #f9f7ee;
+        }
+
+        @keyframes swipeBlink {
+            0%, 100% { opacity: 0.3; transform: translateX(-50%) translateY(0); }
+            50% { opacity: 0.9; transform: translateX(-50%) translateY(4px); }
+        }
+
+        /* --- STYLES ELEMEN HALAMAN DENGAN RASIO 9:16 FULL SEHALAMAN --- */
+        .page {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 100vh;
+            background-color: transparent;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            scroll-snap-align: none !important;
+            scroll-snap-stop: normal !important;
+        }
+
+        .png-asset { 
+            position: relative; 
+            width: 100%;
+            height: 100%;
+            max-height: 100vh;
+            aspect-ratio: 9 / 16;
+            object-fit: contain; 
+            opacity: 0; 
+            z-index: 5; 
+            display: block;
+            margin: 0 auto;
+            transition: opacity 2.2s ease-out, transform 2.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        /* Override Khusus Halaman 2 untuk Countdown */
+        #page2 {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            min-height: 100vh;
+            --cd-top-position: 35%;
+            --cd-width: 85%;
+            --cd-bg-color:#560105;
+            --cd-border-color: #560105;
+            --cd-number-color: #f9f7ee;
+            --cd-label-color: #f9f7ee;
+            --cd-box-radius: 10px;
+        }
+
+        .p2-card-wrapper {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .p2-countdown-container {
+            position: absolute;
+            top: var(--cd-top-position);
+            left: 50%;
+            transform: translateX(-50%) translateY(50px);
+            opacity: 0;
+            z-index: 10;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
+            width: var(--cd-width);
+            transition: opacity 2.2s ease-out, transform 2.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .p2-countdown-container.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        .p2-cd-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border-radius: var(--cd-box-radius);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            flex: 1;
+            height: 55px;
+            background: var(--cd-bg-color);
+            backdrop-filter: blur(4px);
+            border: 1px solid var(--cd-border-color);
+        }
+
+        .p2-cd-number {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.1rem;
+            line-height: 1.1;
+            color: var(--cd-number-color); 
+        }
+
+        .p2-cd-label {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 2px;
+            color: var(--cd-label-color); 
+        }
+
+        #page6 {
+            padding: 0;
+            background-color: transparent !important;
+        }
+
+        /* HALAMAN FOTO GRID (GABUNGAN GRID & GALERI) */
+        #page9b { 
+            width: 100%;
+            height: auto;
+            min-height: 100vh;
+            padding: 40px 0; 
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: #560105 !important;
+        } 
+
+        .gallery-title {
+            font-family: 'Authenia', cursive;
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #f9f7ee;
+            text-align: center;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            z-index: 10;
+        }
+        
+        /* HALAMAN 11 & 12: AMPLOP & RSVP (Background menggunakan background.png) */
+        #page11 { 
+            height: 100vh; 
+            min-height: 100vh; 
+            padding-top: 40px; 
+            padding-bottom: 20px;
+            justify-content: center; 
+            align-items: center;
+            background-image: url('bg1.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .gift-bg-photo, .rsvp-bg-photo {
+            display: none; 
+        }
+
+        .gift-header-text {
+            width: 88%;
+            max-width: 380px;
+            text-align: center;
+            z-index: 10;
+            margin-bottom: 10px;
+            position: relative;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .gift-header-title {
+            font-family: 'Authenia', cursive;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f9f7ee;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            letter-spacing: 2px;
+            text-transform: none;
+        }
+
+        .gift-header-desc {
+            font-size: 0.72rem;
+            color: #f9f7ee;
+            line-height: 1.4;
+            font-weight: 500;
+            padding: 0 10px;
+        }
+
+        /* --- PERBAIKAN HALAMAN RSVP AGAR TIDAK BANYAK KOSONG --- */
+        #page12 { 
+            height: auto; 
+            min-height: 100vh; 
+            padding-top: 40px; 
+            padding-bottom: 50px;
+            justify-content: center; 
+            align-items: center;
+            background-image: url('bg2.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            position: relative;
+        }
+
+        .rsvp-header-title {
+            font-family: 'Authenia', cursive;
+            font-size: 2rem;
+            font-weight: 700;
+            color: #f9f7ee;
+            text-align: center;
+            margin-bottom: 10px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .overlay-page {
+            position: relative; z-index: 4; background-color: #560105;
+        }
+
+        /* --- FOTO GRID (6 FOTO, RASIO 3:5) --- */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            width: 88%;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        
+        .grid-item-box {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 5; 
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            cursor: pointer;
+        }
+
+        .grid-item-box .png-asset {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            aspect-ratio: unset;
+            object-fit: cover;
+            transform-origin: center center;
+            opacity: 0;
+            transform: scale(0.8) translateY(20px);
+            transition: opacity 1.2s ease-out, transform 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+
+        .grid-delay-1 { transition-delay: 0.1s !important; }
+        .grid-delay-2 { transition-delay: 0.3s !important; }
+        .grid-delay-3 { transition-delay: 0.5s !important; }
+        .grid-delay-4 { transition-delay: 0.7s !important; }
+        .grid-delay-5 { transition-delay: 0.9s !important; }
+        .grid-delay-6 { transition-delay: 1.1s !important; }
+
+        /* --- LIGHTBOX & DOWNLOAD --- */
+        .lightbox {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 200; display: none;
+            justify-content: center; align-items: center; flex-direction: column;
+        }
+        .lightbox-img { 
+            max-width: 90%;         
+            max-height: 75vh;       
+            border-radius: 8px; 
+            object-fit: contain; 
+        }
+        .lightbox-close { 
+            position: absolute; 
+            top: 20px;              
+            right: 20px;            
+            color: #fff; 
+            font-size: 2rem;        
+            cursor: pointer; 
+        }
+        .btn-download {
+            margin-top: 20px; 
+            font-family: 'Montserrat', sans-serif;
+            background: #fff; color: #000; border: none; 
+            padding: 12px 28px;     
+            border-radius: 30px; 
+            font-weight: 600; 
+            cursor: pointer; 
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .normal-flow-page {
+            position: relative; z-index: 6; 
+            box-shadow: none;
+            overflow: hidden;
+            background-color: transparent;
+        }
+
+        /* --- HALAMAN 13 --- */
+        #page13 {
+            background-color: #560105 !important;
+        }
+
+        .custom-footer-logo {
+            position: relative; 
+            width: 100%; 
+            height: 30vh;            
+            min-height: 30vh;
+            background-color: #560105; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center;
+            z-index: 10; 
+            border-top: 1px solid rgba(255,255,255,0.1);
+            overflow: hidden;
+            scroll-snap-align: none !important;
+        }
+        .custom-footer-logo img { 
+            width: auto;
+            max-width: 100%;
+            height: 100%;            
+            object-fit: contain; 
+            object-position: center;
+        }
+
+        /* --- STYLES ANIMASI HALUS & PELAN (2.2s) --- */
+        .anim-top      { transform: translateY(-60px); }
+        .anim-bottom   { transform: translateY(60px); }
+        .anim-left     { transform: translateX(-30px); }
+        .anim-right    { transform: translateX(30px); }
+        .anim-scale    { transform: scale(0.9); }
+
+        .png-asset.show { 
+            opacity: 1 !important; 
+            transform: translateX(0) translateY(0) scale(1) rotate(0deg) !important; 
+        }
+
+        .grid-item-box .png-asset.show {
+            opacity: 1 !important;
+            transform: scale(1) translateY(0) translateX(0) !important;
+        }
+
+        @keyframes customShake {
+            0%, 100% { transform: translateY(0) rotate(0deg) scale(1); }
+            10%, 30%, 50%, 70%, 90% { transform: translateY(0) rotate(-3deg) scale(1); }
+            20%, 40%, 60%, 80% { transform: translateY(0) rotate(3deg) scale(1); }
+        }
+
+        .p13-img1.show {
+            animation: customShake 2.5s ease-in-out infinite; 
+        }
+
+        .p6-asset-top {
+            position: relative;
+            z-index: 6;                 
+            object-fit: contain;
+            width: 100%;               
+            max-width: 380px; 
+            height: auto;               
+            margin-bottom: -5px;
+        }
+
+        .p6-maps-link {
+            position: relative;
+            z-index: 6;                 
+            display: inline-block;
+            width: 100%;
+            max-width: 380px;
+        }
+
+        .p6-maps-link img {
+            display: block;
+            object-fit: contain;
+            width: 100%;               
+            max-width: 380px;
+            height: auto;     
+            margin-bottom: 20px;
+        }
+
+        .p6-anim {
+            opacity: 0;
+            transition: opacity 2.0s ease-out, transform 2.0s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .p6-anim-top { transform: translateY(-40px); }
+        .p6-anim-bottom { transform: translateY(40px); }
+        .p6-anim-scale { transform: scale(0.9); }
+
+        .p6-anim.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+        .p6-delay-1 { transition-delay: 0.3s; }
+        .p6-delay-2 { transition-delay: 0.6s; }
+
+        /* --- STYLES AMPLOP DIGITAL (BALOK CREAM, TEKS MAROON & ANIMASI) --- */
+        .gift-container {
+            position: relative;
+            width: 85%;
+            max-width: 400px;
+            margin: 10px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 10;
+        }
+
+        .bank-card {
+            background: var(--bank-card-bg); 
+            border: var(--bank-card-border); 
+            border-radius: 12px;
+            padding: 16px 18px;
+            text-align: left;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            width: var(--bank-card-width);
+            position: relative;
+        }
+
+        .bank-name {
+            font-family: var(--bank-name-font);
+            font-size: var(--bank-name-size);
+            font-weight: 700;
+            color: var(--bank-name-color);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+        }
+
+        .account-box {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: var(--acc-box-bg); 
+            color: var(--acc-box-color);
+            font-family: var(--acc-box-font);
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: var(--acc-box-size);
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-bottom: 6px;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .account-box:active {
+            filter: brightness(0.9);
+            transform: scale(0.98);
+        }
+
+        .acc-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .owner-name {
+            font-family: var(--acc-owner-font);
+            font-size: var(--acc-owner-size);
+            color: var(--acc-owner-color);
+            font-weight: 600;
+            padding-left: 2px;
+        }
+
+        .icon-svg {
+            width: 16px;
+            height: 16px;
+            fill: currentColor;
+            display: block;
+        }
+
+        .gift-anim {
+            position: relative !important;
+            opacity: 0;
+            transition: opacity 2.2s ease-out, transform 2.2s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .gift-anim-top {
+            transform: translateY(-50px);
+        }
+        .gift-anim-bottom {
+            transform: translateY(50px);
+        }
+        .gift-anim.show {
+            opacity: 1 !important;
+            transform: translateY(0) !important;
+        }
+
+        /* --- RSVP FORM & COMMENTS (BALOK CREAM, TEKS MAROON) --- */
+        .rsvp-form-container {
+            width: 85%;
+            max-width: 380px;
+            background: #f9f7ee;
+            border: 1px solid #f9f7ee;
+            border-radius: 12px;
+            padding: 14px 16px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+            z-index: 10;
+            margin-top: 5px; 
+            position: relative !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .form-group {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+        }
+
+        .form-group label {
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #560105;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+        }
+
+        .form-control {
+            width: 100%;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.75rem;
+            padding: 8px 10px;
+            background-color: #560105;
+            border: 1px solid #560105;
+            border-radius: 6px;
+            color: #f9f7ee;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .form-control::placeholder {
+            color: #f9f7ee;
+            opacity: 1;
+        }
+
+        .form-control:focus {
+            border-color: #800208;
+        }
+
+        textarea.form-control {
+            resize: none;
+            height: 60px; 
+        }
+
+        .form-footer {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 8px;
+        }
+
+        .btn-submit {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            color: #f9f7ee;
+            background-color: #560105;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 4px;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+
+        .btn-submit:hover {
+            background-color: #3b0003;
+        }
+
+        .btn-submit:active {
+            transform: scale(0.96);
+        }
+
+        .comments-section {
+            width: 85%;
+            max-width: 380px;
+            margin-top: 15px;
+            text-align: left;
+            z-index: 10;
+            position: relative !important;
+            opacity: 1 !important;
+            transform: none !important;
+        }
+
+        .comments-count {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: #f9f7ee;
+            border-bottom: 1px solid rgba(249, 247, 238, 0.3);
+            padding-bottom: 5px;
+            margin-bottom: 8px;
+        }
+
+        .comments-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            max-height: 250px;
+            overflow-y: auto;
+            margin-bottom: 5px;
+        }
+
+        .comment-item {
+            background: #f9f7ee;
+            border: 1px solid #f9f7ee;
+            padding: 10px 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            animation: fadeInItem 0.5s ease-out forwards;
+        }
+
+        @keyframes fadeInItem {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .comment-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 4px;
+        }
+
+        .comment-name {
+            font-size: 0.72rem;
+            font-weight: 700;
+            color: #560105;
+        }
+
+        .comment-badge {
+            font-size: 0.55rem;
+            font-weight: 700;
+            padding: 2px 6px;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+        .badge-hadir { background-color: #560105; color: #f9f7ee; }
+        .badge-tidak { background-color: #800208; color: #f9f7ee; }
+        .badge-belum { background-color: #a33237; color: #f9f7ee; }
+
+        .comment-text {
+            font-size: 0.68rem;
+            color: #560105;
+            line-height: 1.3;
+            word-break: break-word;
+        }
+
+        .pagination-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        /* --- PERBAIKAN TAMPILAN LAPTOP / MONITOR BESAR --- */
+        @media screen and (min-width: 768px) {
+            body, html {
+                overflow: hidden !important;
+                height: 100vh !important;
+            }
+
+            .app-container {
+                max-width: 450px !important; 
+                height: 100vh !important;
+                position: relative !important;
+                box-shadow: 0 0 40px rgba(0, 0, 0, 0.5) !important;
+                overflow: hidden !important;
+                border-left: 1px solid rgba(255,255,255,0.1);
+                border-right: 1px solid rgba(255,255,255,0.1);
+            }
+
+            #main-cover {
+                position: absolute !important;
+                height: 100% !important;
+            }
+
+            #invitation-content {
+                display: none;
+                width: 100% !important;
+                height: 100% !important;
+                overflow-y: auto !important;
+                overflow-x: hidden !important;
+            }
+
+            .png-asset.show {
+                transform: translateX(0) translateY(0) scale(1) rotate(0deg) !important;
+            }
+            
+            .p6-anim.show {
+                transform: translateY(0) scale(1) !important;
+            }
+
+            .grid-item-box .png-asset {
+                object-fit: cover !important;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bg-music" src="lagu.mp3" loop></audio>
+
+    <div class="app-container">
+
+        <!-- NAVIGASI & MUSIK -->
+        <div class="side-controls" id="side-controls">
+            <button class="ctrl-btn btn-nav-arrow" onclick="navigasiKe('awal')">
+                <img src="https://cdn-icons-png.flaticon.com/512/130/130906.png" style="width:70%; height:70%; object-fit:contain;" alt="Ke Awal">
+            </button>
+            <button class="ctrl-btn btn-music-ctrl music-rotating" id="music-toggle-btn" onclick="toggleMusik()">
+                <svg id="music-icon-svg" viewBox="0 0 24 24">
+                    <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
+                </svg>
+            </button>
+            <button class="ctrl-btn btn-nav-arrow" onclick="navigasiKe('akhir')">
+                <img src="https://cdn-icons-png.flaticon.com/512/130/130907.png" style="width:70%; height:70%; object-fit:contain;" alt="Ke Akhir">
+            </button>
+        </div>
+
+        <!-- MAIN COVER CUSTOM -->
+        <div id="main-cover">
+            <!-- Elemen 1: Cover Nama Pengantin (covernama.png) -->
+            <div class="cover-elements-wrapper">
+                <img src="covernama.png" class="cover-elem-2" id="cover-elem-2" alt="Nama Pengantin Cover">
+            </div>
+
+            <!-- Elemen 2: Tombol Buka Undangan (open.png) - Dipisah dari nama tamu -->
+            <div class="cover-elements-wrapper" style="margin-top: 15px;">
+                <div class="btn-open-img-wrapper" id="btn-open-wrapper" onclick="bukaUndangan()">
+                    <img src="open.png" class="btn-open-png" alt="Open Invitation">
+                </div>
+            </div>
+
+            <!-- Elemen 3: Nama Tamu Undangan - Dipisah sepenuhnya agar bisa digeser atas/bawah secara mandiri -->
+            <div class="guest-greeting-wrapper" id="guest-greeting-wrapper">
+                <div>
+                    <span class="guest-title">Kepada Yth.</span>
+                    <span class="guest-name" id="nama-tamu-cover">Tamu Undangan</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="invitation-content">
+            
+            <div id="content-roll-wrapper">
+                <!-- HALAMAN 1 -->
+                <section class="page" id="page1">
+                    <img src="we.png" class="png-asset p1-img1 anim-top" alt="asset">
+                    
+                    <div class="swipe-indicator" id="swipe-indicator">
+                        <span class="swipe-text">Scroll</span>
+                        <svg class="swipe-icon" viewBox="0 0 24 24">
+                            <path d="M7.41 8.59L12 13.17l4.59-4.58L18 10l-6 6-6-6z"/>
+                        </svg>
+                    </div>
+                </section>
+
+                <!-- HALAMAN 2 -->
+                <section class="page" id="page2">
+                    <div class="p2-card-wrapper">
+                        <img src="kalender.png" class="png-asset p2-img1 anim-bottom" alt="Kalender">
+                        
+                        <div class="p2-countdown-container" id="p2-countdown">
+                            <div class="p2-cd-box">
+                                <span class="p2-cd-number" id="p2-days">00</span>
+                                <span class="p2-cd-label">Hari</span>
+                            </div>
+                            <div class="p2-cd-box">
+                                <span class="p2-cd-number" id="p2-hours">00</span>
+                                <span class="p2-cd-label">Jam</span>
+                            </div>
+                            <div class="p2-cd-box">
+                                <span class="p2-cd-number" id="p2-minutes">00</span>
+                                <span class="p2-cd-label">Menit</span>
+                            </div>
+                            <div class="p2-cd-box">
+                                <span class="p2-cd-number" id="p2-seconds">00</span>
+                                <span class="p2-cd-label">Detik</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- HALAMAN 3 (ARRUM) -->
+                <section class="page" id="page3">
+                    <img src="nama.png" class="png-asset p3-img1 anim-left" alt="asset">
+                </section>
+
+                <!-- HALAMAN 4 (NAMA) -->
+                <section class="page" id="page4">
+                    <img src="waktu.png" class="png-asset p4-img1 anim-left" alt="asset">
+                </section>
+
+                <!-- HALAMAN 5 (WAKTU) -->
+                <section class="page" id="page5">
+                    <img src="arrum.png" class="png-asset p5-img1 anim-right" alt="asset">
+                </section>
+
+                <!-- HALAMAN 6 (LOVE STORY) -->
+                <section class="page" id="page6">
+                    <img src="story.png" class="png-asset p6-img1 anim-scale" alt="asset-halaman-6">
+                </section>
+
+                <!-- HALAMAN 7 (MAPS) -->
+                <section class="page" id="page7">
+                    <img src="alamat.png" class="p6-asset-top p6-anim p6-anim-top p6-delay-1" alt="Aset Atas">
+
+                    <a href="https://maps.app.goo.gl/rVddxVUVDKyKrrJb8" target="_blank" class="p6-maps-link p6-anim p6-anim-scale p6-delay-2">
+                        <img src="maps.png" alt="Lihat Lokasi">
+                    </a>
+                </section>
+            </div>
+
+            <!-- HALAMAN FOTO GRID & GALERI (COMBINED) -->
+            <section class="page overlay-page" id="page9b">
+                <h2 class="gallery-title">Our Gallery</h2>
+                <div class="photo-grid">
+                    <div class="grid-item-box" onclick="openLightbox(this)">
+                        <img src="g1.jpg" class="png-asset grid-delay-1" alt="grid-1">
+                    </div>
+                    <div class="grid-item-box" onclick="openLightbox(this)">
+                        <img src="g2.jpg" class="png-asset grid-delay-2" alt="grid-2">
+                    </div>
+                    <div class="grid-item-box" onclick="openLightbox(this)">
+                        <img src="g3.jpg" class="png-asset grid-delay-3" alt="grid-3">
+                    </div>
+                    <div class="grid-item-box" onclick="openLightbox(this)">
+                        <img src="g4.jpg" class="png-asset grid-delay-4" alt="grid-4">
+                    </div>
+                    <div class="grid-item-box" onclick="openLightbox(this)">
+                        <img src="g5.jpg" class="png-asset grid-delay-5" alt="grid-5">
+                    </div>
+                    <div class="grid-item-box" onclick="openLightbox(this)">
+                        <img src="g6.jpg" class="png-asset grid-delay-6" alt="grid-6">
+                    </div>
+                </div>
+            </section>
+
+            <!-- HALAMAN 11 (AMPLOP DIGITAL DENGAN ANIMASI MUNCUL) -->
+            <section class="page normal-flow-page" id="page11">
+                <div class="gift-header-text gift-anim gift-anim-top">
+                    <h2 class="gift-header-title">Wedding Gift</h2>
+                    <p class="gift-header-desc">Kehadiran dan doa Anda sudah menjadi berharga bagi kami. Namun, jika Anda berkenan memberi tanda kasih, dapat dikirimkan melalui rekening berikut.</p>
+                </div>
+
+                <div class="gift-container">
+                    <div class="bank-card gift-anim gift-anim-bottom">
+                        <div class="bank-name">Bank BNI</div>
+                        <div class="account-box" onclick="salinNoRek('6666666', this)">
+                            <div class="acc-left">
+                                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2V6c0-1.11-.89-2-2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                                <span class="num-text">6666666</span>
+                            </div>
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        </div>
+                        <div class="owner-name">a.n. HAZELA BIANTARI</div>
+                    </div>
+
+                    <div class="bank-card gift-anim gift-anim-bottom">
+                        <div class="bank-name">Bank BCA</div>
+                        <div class="account-box" onclick="salinNoRek('8888888', this)">
+                            <div class="acc-left">
+                                <svg class="icon-svg" viewBox="0 0 24 24"><path d="M20 4H4c-1.11 0-1.99.89-1.99 2L2 18c0 1.11.89 2 2 2h16c1.11 0 2-.89 2-2zm0 14H4v-6h16v6zm0-10H4V6h16v2z"/></svg>
+                                <span class="num-text">8888888</span>
+                            </div>
+                            <svg class="icon-svg" viewBox="0 0 24 24"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+                        </div>
+                        <div class="owner-name">a.n. KAYDEN MELVANO</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- HALAMAN 12 (RSVP) -->
+            <section class="page normal-flow-page" id="page12">
+                <h2 class="rsvp-header-title">RSVP</h2>
+
+                <div class="rsvp-form-container">
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" id="rsvp-name" class="form-control" placeholder="Masukkan nama Anda">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Kehadiran</label>
+                        <select id="rsvp-status" class="form-control">
+                            <option value="Hadir">Hadir</option>
+                            <option value="Tidak Hadir">Tidak Hadir</option>
+                            <option value="Belum Ditentukan">Belum Ditentukan</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Ucapan</label>
+                        <textarea id="rsvp-message" class="form-control" placeholder="Tuliskan ucapan & doa restu Anda..."></textarea>
+                    </div>
+                    
+                    <div class="form-footer">
+                        <button type="button" class="btn-submit" id="btn-submit-rsvp" onclick="kirimUcapan()">Kirim</button>
+                    </div>
+                </div>
+
+                <div class="comments-section">
+                    <div class="comments-count" id="comments-title">0 Ucapan Terkirim</div>
+                    <div class="comments-list" id="comments-container"></div>
+                    <div class="pagination-container" id="comments-pagination"></div>
+                </div>
+            </section>
+
+            <!-- HALAMAN 13 -->
+            <section class="page normal-flow-page" id="page13">
+                <img src="terimakasih.png" class="png-asset p13-img1 anim-bottom" alt="asset">
+            </section>
+
+            <!-- FOOTER LOGO -->
+            <footer class="custom-footer-logo">
+                <img src="logo.png" alt="Logo Vendor">
+            </footer>
+
+        </div>
+    </div>
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">×</span>
+        <img src="" class="lightbox-img" id="lightbox-img" onclick="event.stopPropagation()">
+        <a href="" id="download-link" class="btn-download" download onclick="event.stopPropagation()">Download Photo</a>
+    </div>
+
+    <script>
+        const TARGET_COUNTDOWN = "2026-12-06T00:00:00"; 
+        
+        const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwnCVLeiQrxw19oDnEsq09P1eh6WXxLJ5hTZeT5ECFS9VO9b8t3T4S97Ewj5oh9NQkl/exec";
+        let dataUcapan = [];
+        
+        let ucapanCurrentPage = 1;
+        const ucapanPerPage = 5;
+
+        function escapeHTML(str) {
+            if (!str) return '';
+            return String(str).replace(/[&<>'"]/g, 
+                tag => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[tag] || tag)
+            );
+        }
+
+        const urlParams = new URLSearchParams(window.location.search);
+        let guestName = urlParams.get('to') || urlParams.get('n') || urlParams.get('nama');
+        if (guestName) {
+            guestName = decodeURIComponent(guestName.replace(/\+/g, ' '));
+            const elNamaTamuCover = document.getElementById('nama-tamu-cover');
+            if (elNamaTamuCover) elNamaTamuCover.innerText = guestName;
+
+            const elRsvpName = document.getElementById('rsvp-name');
+            if (elRsvpName) elRsvpName.value = guestName;
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const elem2 = document.getElementById('cover-elem-2');
+            const greetingWrapper = document.getElementById('guest-greeting-wrapper');
+            const btnOpen = document.getElementById('btn-open-wrapper');
+
+            setTimeout(() => {
+                if (elem2) elem2.classList.add('show');
+            }, 600);
+
+            setTimeout(() => {
+                if (greetingWrapper) greetingWrapper.classList.add('show');
+                if (btnOpen) btnOpen.classList.add('show');
+            }, 1000);
+
+            initCountdown();
+            ambilDataUcapan();
+        });
+
+        const content = document.getElementById('invitation-content');
+        const audio = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-toggle-btn');
+        const sideControls = document.getElementById('side-controls');
+        
+        function bukaUndangan() {
+            const cover = document.getElementById('main-cover');
+            if (!cover || !content) return;
+
+            cover.classList.add('slide-down'); 
+            
+            if (audio && musicBtn) {
+                audio.play().then(() => {
+                    musicBtn.classList.add('music-rotating');
+                }).catch(err => console.log("Autoplay musik diblokir browser."));
+            }
+            
+            setTimeout(() => {
+                cover.style.display = 'none';
+                content.style.display = 'block';
+                content.scrollTop = 0;
+                
+                initScrollObserverForControls();
+                
+                setTimeout(() => {
+                    const p1Img1 = document.querySelector('.p1-img1');
+                    if (p1Img1) p1Img1.classList.add('show');
+                }, 300);
+
+                startObserver(); 
+                initSwipeHide();
+            }, 1200);
+        }
+
+        function initScrollObserverForControls() {
+            const page2 = document.getElementById('page2');
+            if (!page2 || !sideControls || !content) return;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        sideControls.classList.add('show');
+                    } else {
+                        const page2Top = page2.getBoundingClientRect().top;
+                        if (page2Top > 0) {
+                            sideControls.classList.remove('show');
+                        }
+                    }
+                });
+            }, {
+                root: content,
+                threshold: 0.2
+            });
+
+            observer.observe(page2);
+        }
+
+        function initSwipeHide() {
+            const swipeInd = document.getElementById('swipe-indicator');
+            if (!content || !swipeInd) return;
+
+            const handleScroll = () => {
+                if (content.scrollTop > 30) {
+                    swipeInd.classList.add('hide');
+                    content.removeEventListener('scroll', handleScroll);
+                }
+            };
+            content.addEventListener('scroll', handleScroll);
+        }
+
+        function navigasiKe(tujuan) {
+            if (!content) return;
+            if (tujuan === 'awal') {
+                content.scrollTo({ top: 0, behavior: 'smooth' });
+            } else if (tujuan === 'akhir') {
+                content.scrollTo({ top: content.scrollHeight, behavior: 'smooth' });
+            }
+        }
+
+        function toggleMusik() {
+            if (!audio || !musicBtn) return;
+            const iconSvg = document.getElementById('music-icon-svg');
+            if (audio.paused) {
+                audio.play();
+                musicBtn.classList.add('music-rotating');
+                if (iconSvg) iconSvg.innerHTML = `<path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>`;
+            } else {
+                audio.pause();
+                musicBtn.classList.remove('music-rotating');
+                if (iconSvg) iconSvg.innerHTML = `<path d="M4.27 3L3 4.27l9 9v.28c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4v-1.73L19.73 21 21 19.73 4.27 3zM14 7h4V3h-6v5.18l2 2z"/>`;
+            }
+        }
+
+        function openLightbox(element) {
+            let src = "";
+            if (typeof element === 'string') {
+                src = element;
+            } else if (element) {
+                const img = element.querySelector('img') || element;
+                if (img) src = img.getAttribute('src');
+            }
+
+            if (!src) return;
+
+            const lbImg = document.getElementById('lightbox-img');
+            const dlLink = document.getElementById('download-link');
+            const lb = document.getElementById('lightbox');
+
+            if (lbImg && dlLink && lb) {
+                lbImg.src = src;
+                dlLink.href = src;
+                const fileName = src.substring(src.lastIndexOf('/') + 1) || 'wedding-photo.jpg';
+                dlLink.setAttribute('download', fileName);
+                lb.style.display = 'flex';
+            }
+        }
+        
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            if (lb) lb.style.display = 'none';
+        }
+
+        function startObserver() {
+            const assets = document.querySelectorAll('.png-asset, .p6-anim, .p2-countdown-container, .gift-anim');
+            if (assets.length === 0) return;
+
+            const observerOptions = { 
+                root: content, 
+                rootMargin: '0px 0px -40px 0px', 
+                threshold: 0.1 
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.target.classList.contains('p1-img1')) return;
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('show');
+                    }
+                });
+            }, observerOptions);
+
+            assets.forEach(asset => observer.observe(asset));
+        }
+
+        function initCountdown() {
+            const targetTime = new Date(TARGET_COUNTDOWN).getTime();
+            if (isNaN(targetTime)) return;
+
+            const elDays = document.getElementById('p2-days');
+            const elHours = document.getElementById('p2-hours');
+            const elMinutes = document.getElementById('p2-minutes');
+            const elSeconds = document.getElementById('p2-seconds');
+
+            if (!elDays || !elHours || !elMinutes || !elSeconds) return;
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const diff = targetTime - now;
+
+                if (diff <= 0) {
+                    elDays.innerText = "00";
+                    elHours.innerText = "00";
+                    elMinutes.innerText = "00";
+                    elSeconds.innerText = "00";
+                    clearInterval(intervalId);
+                    return;
+                }
+
+                const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+                elDays.innerText = days < 10 ? "0" + days : days;
+                elHours.innerText = hours < 10 ? "0" + hours : hours;
+                elMinutes.innerText = minutes < 10 ? "0" + minutes : minutes;
+                elSeconds.innerText = seconds < 10 ? "0" + seconds : seconds;
+            }
+
+            updateTimer();
+            const intervalId = setInterval(updateTimer, 1000);
+        }
+
+        function salinNoRek(text, element) {
+            navigator.clipboard.writeText(text).then(() => {
+                const textEl = element.querySelector('.num-text');
+                if (textEl) {
+                    const originalText = textEl.innerText;
+                    textEl.innerText = "Tersalin!";
+                    setTimeout(() => {
+                        textEl.innerText = originalText;
+                    }, 1500);
+                }
+            }).catch(err => console.error('Gagal menyalin teks: ', err));
+        }
+
+        function renderUcapan() {
+            const container = document.getElementById('comments-container');
+            const title = document.getElementById('comments-title');
+            const paginationContainer = document.getElementById('comments-pagination');
+            
+            if (!container || !title || !paginationContainer) return;
+            
+            title.innerText = `${dataUcapan.length} Ucapan Terkirim`;
+            container.innerHTML = "";
+
+            if(dataUcapan.length === 0) {
+                container.innerHTML = `<div style="text-align:center; font-size:0.7rem; color:#f9f7ee; padding: 10px 0;">Belum ada ucapan.</div>`;
+                paginationContainer.innerHTML = "";
+                return;
+            }
+
+            const startIndex = (ucapanCurrentPage - 1) * ucapanPerPage;
+            const endIndex = startIndex + ucapanPerPage;
+            const paginatedItems = dataUcapan.slice(startIndex, endIndex);
+
+            if (paginatedItems.length === 0 && ucapanCurrentPage > 1) {
+                ucapanCurrentPage--;
+                renderUcapan();
+                return;
+            }
+
+            paginatedItems.forEach(item => {
+                let badgeClass = "badge-belum";
+                if(item.status === "Hadir") badgeClass = "badge-hadir";
+                if(item.status === "Tidak Hadir") badgeClass = "badge-tidak";
+
+                const html = `
+                    <div class="comment-item">
+                        <div class="comment-header">
+                            <span class="comment-name">${escapeHTML(item.nama)}</span>
+                            <span class="comment-badge ${badgeClass}">${escapeHTML(item.status)}</span>
+                        </div>
+                        <div class="comment-text">${escapeHTML(item.teks)}</div>
+                    </div>
+                `;
+                container.innerHTML += html;
+            });
+
+            paginationContainer.innerHTML = "";
+            const totalPages = Math.ceil(dataUcapan.length / ucapanPerPage);
+
+            if (totalPages > 1) {
+                const btnPrev = document.createElement('button');
+                btnPrev.className = 'btn-submit';
+                btnPrev.style.fontSize = '0.6rem';
+                btnPrev.style.padding = '4px 10px';
+                btnPrev.innerText = 'Sebelumnya';
+                btnPrev.disabled = ucapanCurrentPage === 1;
+                if(ucapanCurrentPage === 1) btnPrev.style.opacity = '0.4';
+                btnPrev.onclick = () => {
+                    if (ucapanCurrentPage > 1) {
+                        ucapanCurrentPage--;
+                        renderUcapan();
+                    }
+                };
+
+                const pageIndicator = document.createElement('span');
+                pageIndicator.style.fontSize = '0.65rem';
+                pageIndicator.style.color = '#f9f7ee';
+                pageIndicator.style.fontWeight = '600';
+                pageIndicator.innerText = `${ucapanCurrentPage} / ${totalPages}`;
+
+                const btnNext = document.createElement('button');
+                btnNext.className = 'btn-submit';
+                btnNext.style.fontSize = '0.6rem';
+                btnNext.style.padding = '4px 10px';
+                btnNext.innerText = 'Selanjutnya';
+                btnNext.disabled = ucapanCurrentPage === totalPages;
+                if(ucapanCurrentPage === totalPages) btnNext.style.opacity = '0.4';
+                btnNext.onclick = () => {
+                    if (ucapanCurrentPage < totalPages) {
+                        ucapanCurrentPage++;
+                        renderUcapan();
+                    }
+                };
+
+                paginationContainer.appendChild(btnPrev);
+                paginationContainer.appendChild(pageIndicator);
+                paginationContainer.appendChild(btnNext);
+            }
+        }
+
+        function ambilDataUcapan() {
+            fetch(`${WEB_APP_URL}?action=read`)
+                .then(response => response.json())
+                .then(data => {
+                    if (Array.isArray(data)) {
+                        dataUcapan = data;
+                    }
+                    renderUcapan();
+                })
+                .catch(err => {
+                    console.error("Gagal memuat data dari Google Sheet:", err);
+                    renderUcapan();
+                });
+        }
+
+        function kirimUcapan() {
+            const inputNama = document.getElementById('rsvp-name');
+            const inputStatus = document.getElementById('rsvp-status');
+            const inputMesej = document.getElementById('rsvp-message');
+            const btnSubmit = document.getElementById('btn-submit-rsvp');
+
+            if (!inputNama || !inputStatus || !inputMesej) return;
+
+            const nama = inputNama.value.trim();
+            const status = inputStatus.value;
+            const teks = inputMesej.value.trim();
+
+            if (!nama || !teks) {
+                alert("Silakan isi Nama dan Ucapan Anda terlebih dahulu.");
+                return;
+            }
+
+            btnSubmit.disabled = true;
+            btnSubmit.innerText = "Mengirim...";
+
+            const formData = new FormData();
+            formData.append('nama', nama);
+            formData.append('status', status);
+            formData.append('teks', teks);
+
+            fetch(WEB_APP_URL, {
+                method: 'POST',
+                mode: 'no-cors',
+                body: formData
+            })
+            .then(() => {
+                dataUcapan.unshift({ nama, status, teks });
+                inputNama.value = "";
+                inputMesej.value = "";
+                ucapanCurrentPage = 1;
+                renderUcapan();
+            })
+            .catch(err => {
+                console.error("Error saat mengirim:", err);
+                dataUcapan.unshift({ nama, status, teks });
+                inputNama.value = "";
+                inputMesej.value = "";
+                ucapanCurrentPage = 1; 
+                renderUcapan();
+            })
+            .finally(() => {
+                btnSubmit.disabled = false;
+                btnSubmit.innerText = "Kirim";
+            });
+        }
+    </script>
+</body>
+</html>
