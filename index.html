@@ -42,22 +42,13 @@
             
             /* 1. Cover Element 2 (covernama.png) */
             --cover-elem2-width: 100%;
-            --cover-elem2-max-width: 300px;
-            --cover-elem2-pos-y: -25px;      /* Atur Naik (+) / Turun (-) pos-y ini */
-            --cover-elem2-pos-x: 0px;      /* Geser Kiri / Kanan */
+            --cover-elem2-max-width: 280px;
 
             /* 2. Cover Open Button (open.png) */
-            --cover-btn-width: 75%;
-            --cover-btn-max-width: 190px;
-            --cover-btn-pos-y: -55px;        /* Atur Naik (+) / Turun (-) pos-y ini */
-            --cover-btn-pos-x: 0px;        /* Geser Kiri / Kanan */
-            --cover-btn-margin-top: 35px;
+            --cover-btn-width: 70%;
+            --cover-btn-max-width: 180px;
 
             /* 3. Cover Guest Greeting & Name Settings */
-            --cover-greeting-pos-y: -20px;   /* Atur Naik (+) / Turun (-) pos-y ini */
-            --cover-greeting-pos-x: 0px;   /* Geser Kiri / Kanan */
-            --cover-greeting-margin-top: 20px;
-
             --cover-title-font: 'Montserrat', sans-serif;
             --cover-title-size: 0.75rem;
             --cover-title-color: #f9f7ee;
@@ -98,6 +89,7 @@
         body, html {
             width: 100%;
             height: 100%;
+            height: 100dvh;
             background-color: #1a1a1a;
             font-family: 'Montserrat', sans-serif;
             overflow: hidden;
@@ -110,6 +102,7 @@
             position: relative;
             width: 100%;
             height: 100%;
+            height: 100dvh;
             max-width: 480px;
             background-color: #560105;
             overflow: hidden;
@@ -119,25 +112,20 @@
         /* --- 1. Main Cover --- */
         #main-cover {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%; height: 100dvh;
             background-image: var(--cover-bg-image);
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             display: flex; 
             flex-direction: column; 
-            justify-content: center; /* Center secara vertikal */
-            align-items: center;     /* Center secara horizontal */
+            justify-content: space-evenly; /* Distribusi presisi di semua ukuran HP */
+            align-items: center;     
             text-align: center; 
-            padding-top: 5%;
-            padding-bottom: 20px;
-            padding-left: 15px;
-            padding-right: 15px;
+            padding: 20px 15px;
             z-index: 50;
             transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1), opacity 1.2s ease;
-            overflow-y: auto;
-            overflow-x: hidden;
-            -webkit-overflow-scrolling: touch;
+            overflow: hidden;
         }
 
         /* Kelas untuk mentrigger animasi buka cover ke bawah */
@@ -154,14 +142,14 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
 
         .cover-elem-2 {
             position: relative;
-            /* Menggunakan translate untuk mendukung pergeseran X dan Y secara bersamaan dengan smooth */
-            transform: translate(var(--cover-elem2-pos-x), var(--cover-elem2-pos-y)) scale(0.5);
             width: var(--cover-elem2-width);
             max-width: var(--cover-elem2-max-width);
+            max-height: 25vh;
             height: auto;
             object-fit: contain;
             opacity: 0;
@@ -172,11 +160,11 @@
         @keyframes munculElegan {
             0% {
                 opacity: 0;
-                transform: translate(var(--cover-elem2-pos-x), calc(var(--cover-elem2-pos-y) + 20px)) scale(0.9);
+                transform: translateY(20px) scale(0.9);
             }
             100% {
                 opacity: 1;
-                transform: translate(var(--cover-elem2-pos-x), var(--cover-elem2-pos-y)) scale(1);
+                transform: translateY(0) scale(1);
             }
         }
 
@@ -186,8 +174,6 @@
         }
 
         .guest-greeting-wrapper {
-            margin-top: var(--cover-greeting-margin-top);
-            transform: translate(var(--cover-greeting-pos-x), var(--cover-greeting-pos-y));
             z-index: 3;
             opacity: 0;
             transition: opacity 1.8s ease, transform 1.8s ease;
@@ -226,8 +212,6 @@
         }
 
         .btn-open-img-wrapper {
-            margin-top: var(--cover-btn-margin-top);
-            transform: translate(var(--cover-btn-pos-x), var(--cover-btn-pos-y));
             z-index: 3;
             cursor: pointer;
             width: var(--cover-btn-width);
@@ -243,7 +227,7 @@
         }
 
         .btn-open-img-wrapper:active {
-            transform: translate(var(--cover-btn-pos-x), var(--cover-btn-pos-y)) scale(0.95);
+            transform: scale(0.95);
         }
 
         .btn-open-png {
@@ -259,6 +243,7 @@
             display: none; 
             width: 100%;
             height: 100%;
+            height: 100dvh;
             overflow-y: auto;
             overflow-x: hidden;
             background-color: #560105;
@@ -278,7 +263,7 @@
 
         /* --- SIDE CONTROLS CONTAINER --- */
         .side-controls {
-            position: absolute;
+            position: fixed;
             right: 12px; 
             bottom: 25px;
             display: flex;
@@ -353,7 +338,7 @@
         /* --- SWIPE INDICATOR HALAMAN 1 --- */
         .swipe-indicator {
             position: absolute;
-            bottom: 25px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -372,7 +357,7 @@
         }
 
         .swipe-text {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             font-weight: 500;
             color: #f9f7ee;
             letter-spacing: 1.5px;
@@ -395,7 +380,9 @@
             position: relative;
             width: 100%;
             height: 100vh;
+            height: 100dvh;
             min-height: 100vh;
+            min-height: 100dvh;
             background-color: transparent;
             overflow: hidden;
             display: flex;
@@ -411,6 +398,7 @@
             width: 100%;
             height: 100%;
             max-height: 100vh;
+            max-height: 100dvh;
             aspect-ratio: 9 / 16;
             object-fit: contain; 
             opacity: 0; 
@@ -425,7 +413,9 @@
             position: relative;
             width: 100%;
             height: 100vh;
+            height: 100dvh;
             min-height: 100vh;
+            min-height: 100dvh;
             --cd-top-position: 35%;
             --cd-width: 85%;
             --cd-bg-color:#560105;
@@ -506,6 +496,7 @@
             width: 100%;
             height: auto;
             min-height: 100vh;
+            min-height: 100dvh;
             padding: 40px 0; 
             display: flex;
             flex-direction: column;
@@ -528,7 +519,9 @@
         /* HALAMAN 11 & 12: AMPLOP & RSVP (Background menggunakan background.png) */
         #page11 { 
             height: 100vh; 
+            height: 100dvh; 
             min-height: 100vh; 
+            min-height: 100dvh; 
             padding-top: 40px; 
             padding-bottom: 20px;
             justify-content: center; 
@@ -578,6 +571,7 @@
         #page12 { 
             height: auto; 
             min-height: 100vh; 
+            min-height: 100dvh; 
             padding-top: 40px; 
             padding-bottom: 50px;
             justify-content: center; 
@@ -1117,13 +1111,13 @@
             </div>
 
             <!-- Elemen 2: Tombol Buka Undangan (open.png) - Dipisah dari nama tamu -->
-            <div class="cover-elements-wrapper" style="margin-top: 15px;">
+            <div class="cover-elements-wrapper">
                 <div class="btn-open-img-wrapper" id="btn-open-wrapper" onclick="bukaUndangan()">
                     <img src="open.png" class="btn-open-png" alt="Open Invitation">
                 </div>
             </div>
 
-            <!-- Elemen 3: Nama Tamu Undangan - Dipisah sepenuhnya agar bisa digeser atas/bawah secara mandiri -->
+            <!-- Elemen 3: Nama Tamu Undangan -->
             <div class="guest-greeting-wrapper" id="guest-greeting-wrapper">
                 <div>
                     <span class="guest-title">Kepada Yth.</span>
